@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'hello'
-version = '0.0.1'
+version = '0.0.2'
 sourceCompatibility = '11'
 
 repositories {
@@ -15,14 +15,14 @@ repositories {
 
 jib {
     from {
-        image = "adoptopenjdk/openjdk16:x86_64-alpine-jdk-16.0.1_9"
+        image = "adoptopenjdk/openjdk15:x86_64-alpine-jre-15.0.2_7"
     }
     to {
         image = "niceman114/hello-jib"
         tags = ["$version", "latest"]
     }
     container {
-        jvmFlags = ["-Xms128m", "-Xmx128m"]
+        jvmFlags = ["-Xms128m", "-Xmx128m", "-javaagent:/newrelic/newrelic.jar"]
     }
 }
 
